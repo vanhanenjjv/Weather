@@ -11,10 +11,12 @@
     },
     "[typescript]": {
         "editor.tabSize": 2,
-        "editor.insertSpaces": true
+        "editor.insertSpaces": true,
+        "editor.rulers": [80]
     },
     "[typescriptreact]": {
         "editor.tabSize": 2,
-        "editor.insertSpaces": true
+        "editor.insertSpaces": true,
+        "editor.rulers": [80]
     }
 }
