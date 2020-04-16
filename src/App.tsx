@@ -1,13 +1,13 @@
 import React from 'react';
-import Layout from './components/Layout';
+import MainLayout from './components/MainLayout';
 import { Link } from 'react-router-dom';
 import SensorPage from './pages/SensorPage';
 
 
 const App: React.FC = () => (
-  <Layout>
+  <MainLayout>
     <Link to="/sensors" component={SensorPage} />
-  </Layout>
+  </MainLayout>
 );
 
 export default App;
