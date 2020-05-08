@@ -1,4 +1,5 @@
 import 'antd/dist/antd.min.css';
+import 'moment/locale/fi';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
