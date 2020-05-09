@@ -2,28 +2,21 @@ import BasePlot, { PlotConfig } from '@antv/g2plot/lib/base/plot';
 import { Bar } from '@antv/g2plot';
 
 
-const key = 'chart:configuration';
+const key = 'chart:type';
 
 
-interface Configuration<T extends BasePlot, E extends PlotConfig> {
-  plot: T,
-  config: E
-};
+// interface Configuration<T extends BasePlot> {
+//   plot: T,
+// };
 
-export function type<Configuration>(config: C, plot: T) {
-
-  const configuration = {
-    plot: plot,
-    config: config
-  };
-
+export function type(/* not guud */ plot: any) {
   return (target: object) => {
-    Reflect.defineMetadata(key, configuration, target);
+    Reflect.defineMetadata(key, plot, target);
   };
 }
 
-export function getType(object: Function): PlotConfig {
-  const configuration = Reflect.getMetadata(key, object);
+export function getType(object: Function): any {
+  const plot = Reflect.getMetadata(key, object);
 
-  return configuration;
+  return plot;
 }

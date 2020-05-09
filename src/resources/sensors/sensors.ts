@@ -6,6 +6,7 @@ import { Light, Temperature } from './models';
 import * as Sensora from './decorators';
 import { Sensor as Sensei, getJsonProperties } from './decorators';
 import { getColumns } from './decorators/table/column';
+import moment from 'moment';
 
 
 // export interface SensorsConfiguration {
@@ -98,7 +99,13 @@ function mapJson<T extends Function>(input: any[], model: T): T[] {
 
     for (const mapping of mappings) {
       const [modelProp, jsonProp] = mapping;
-      m[modelProp] = i[jsonProp];
+
+      // uuuuuuufff
+      if (jsonProp === 'date_time') {
+        const d = moment(i[jsonProp]);
+        m[modelProp] = d;
+      } else
+        m[modelProp] = Number.parseFloat(i[jsonProp]);
     }
 
     const a = createInstance(model);

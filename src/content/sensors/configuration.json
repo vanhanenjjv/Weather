@@ -1,0 +1,10 @@
+{
+  "baseUrl": "https://webapi19sa-1.course.tamk.cloud/v1/weather/",
+  "sensors": {
+    "temperature": {
+      "label": "Temperature",
+      "model": "temperature",
+      "route": "temperature"
+    }
+  }
+}
