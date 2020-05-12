@@ -1,16 +1,8 @@
-import { Chart, Sensor, jsonProperty } from '../decorators';
+import { Chart, Sensor } from '../decorators';
 import { Measurement } from './measurement';
-import { Bar, BarConfig, Column, ColumnConfig, Scatter } from '@antv/g2plot';
-import { Moment } from 'moment';
+import { ColumnConfig, Scatter } from '@antv/g2plot';
+import * as Json from '../common/json';
 
-
-const meme: BarConfig = {
-  meta: {
-    foo: {
-
-    }
-  }
-};
 
 @Sensor.name('Humidity')
 @Sensor.endpoint(
@@ -19,7 +11,7 @@ const meme: BarConfig = {
 @Chart.type(Scatter)
 @Chart.configuration<ColumnConfig>({ color: 'blue' })
 export class Humidity extends Measurement {
-  constructor(humidity: number, time: Moment) {
+  constructor(humidity: number, time: Date) {
     super(time);
 
     this.humidity = humidity;
@@ -27,6 +19,6 @@ export class Humidity extends Measurement {
 
   @Chart.field('y')
   @Chart.meta({ formatter: (value: number) => `${value} C` })
-  @jsonProperty('humidity_out')
+  @Json.property({ name: ['humidity_out', 'humidity_in'], type: 'number' })
   public readonly humidity: number;
 }

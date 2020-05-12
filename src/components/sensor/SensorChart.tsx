@@ -1,7 +1,5 @@
 import React from 'react';
-import { Table } from 'antd';
-import { Table as DTable, Chart, Sensor } from '../../resources/sensors/decorators';
-import { Scatter, Line, LineConfig } from '@antv/g2plot';
+import { Chart } from '../../resources/sensors/decorators';
 import moment from 'moment';
 
 
@@ -13,7 +11,7 @@ interface SensorChartProps<T extends Function> {
 export function SensorChart<
 T extends Function
 >({ measurements, model }: SensorChartProps<T>) {
-  const [reference, _] = React.useState(React.createRef<HTMLDivElement>());
+  const [reference] = React.useState(React.createRef<HTMLDivElement>());
 
   React.useEffect(() => {
     if (reference.current) {
@@ -36,12 +34,9 @@ T extends Function
         meta: metas,
         xAxis: {
           label: {
-            // formatter: (v: any) => {
-
-
-            //   // Ooooh no no no no no
-            //   return moment(Number.parseFloat(v)).format('LLL');
-            // }
+            formatter: (date: string) => {
+              return moment(date, 'LLL').format('L');
+            }
           }
         }
       });

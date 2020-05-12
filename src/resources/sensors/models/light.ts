@@ -1,22 +1,22 @@
-import { Sensor, Chart, jsonProperty } from '../decorators';
-import { Bar, Column, ColumnConfig } from '@antv/g2plot';
+import { Sensor, Chart } from '../decorators';
+import { Line, LineConfig } from '@antv/g2plot';
 import { Measurement } from './measurement';
-import { Moment } from 'moment';
+import * as Json from '../common/json';
 
 
 @Sensor.name('Light')
-@Chart.type(Column)
-@Chart.configuration<ColumnConfig>({ })
+@Chart.type(Line)
+@Chart.configuration<LineConfig>({  })
 @Sensor.endpoint('https://webapi19sa-1.course.tamk.cloud/v1/weather/light')
 export class Light extends Measurement {
-  constructor(light: number, time: Moment) {
+  constructor(light: number, time: Date) {
     super(time);
 
     this.light = light;
   }
 
   @Chart.field('y')
-  @jsonProperty('light')
+  @Json.property({ name: 'light', type: 'number' })
   public readonly light: number;
 }
 
